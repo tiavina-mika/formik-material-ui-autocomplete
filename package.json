@@ -1,0 +1,22 @@
+{
+  "title": "Material demo",
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "description": "https://github.com/mui-org/material-ui/blob/v4.x/docs/src/pages/components/autocomplete/ComboBox.js",
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/lab": "latest",
+    "formik": "2.2.9",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "name": "material-demo-forked",
+  "version": "0.0.3",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
