@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Form, Formik } from "formik";
-import { Button, FormControl, makeStyles } from "@material-ui/core";
+import { Button, FormControl, InputLabel, makeStyles } from "@material-ui/core";
 
 const ingredients = [
   { name: "Salt", objectId: "objectId1" },
@@ -13,6 +13,10 @@ const ingredients = [
 const useStyles = makeStyles({
   buttons: {
     marginTop: 20
+  },
+  formContainer: {
+    display: "flex",
+    flexDirection: "column"
   }
 });
 
@@ -26,41 +30,50 @@ const Demo = () => {
   };
 
   return (
-    <Formik initialValues={{ ingredient: "" }} onSubmit={_onSubmit}>
+    <Formik initialValues={{ ingredient: "", name: "" }} onSubmit={_onSubmit}>
       {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
           <Form>
-            <FormControl>
-              <Autocomplete
-                id="ingredient"
-                name="ingredient"
-                options={ingredients}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 300 }}
-                onChange={(_, value) => setIngredientId(value.objectId)}
-                getOptionSelected={(option, value) =>
-                  option.name === value.name
-                }
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    label="Ingredient"
-                    value={values.ingredient}
-                  />
-                )}
-              />
-            </FormControl>
-            <div className={classes.buttons}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                ENREGISTRER
-              </Button>
+            <div className={classes.formContainer}>
+              <FormControl>
+                <TextField
+                  name="name"
+                  inputProps={{
+                    placeholder: "Nom de l'article"
+                  }}
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </FormControl>
+              <FormControl>
+                <Autocomplete
+                  id="ingredient"
+                  name="ingredient"
+                  options={ingredients}
+                  getOptionLabel={(option) => option.name}
+                  onChange={(_, value) => setIngredientId(value.objectId)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      label="Ingredient"
+                      value={values.ingredient}
+                    />
+                  )}
+                />
+              </FormControl>
+              <div className={classes.buttons}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  ENREGISTRER
+                </Button>
+              </div>
             </div>
           </Form>
         );
