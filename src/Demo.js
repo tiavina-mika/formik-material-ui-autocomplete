@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Form, Formik } from "formik";
-import { Button, FormControl, InputLabel, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  makeStyles
+} from "@material-ui/core";
 
 const ingredients = [
   { name: "Salt", objectId: "objectId1" },
@@ -17,6 +23,10 @@ const useStyles = makeStyles({
   formContainer: {
     display: "flex",
     flexDirection: "column"
+  },
+  paper: {
+    background: "#fff",
+    padding: 10
   }
 });
 
@@ -52,6 +62,7 @@ const Demo = () => {
                   name="ingredient"
                   options={ingredients}
                   getOptionLabel={(option) => option.name}
+                  loading
                   onChange={(_, value) => setIngredientId(value.objectId)}
                   renderInput={(params) => (
                     <TextField
@@ -60,6 +71,17 @@ const Demo = () => {
                       onBlur={handleBlur}
                       label="Ingredient"
                       value={values.ingredient}
+                      InputProps={{
+                        ...params.InputProps,
+                        endAdornment: (
+                          <React.Fragment>
+                            {true ? (
+                              <CircularProgress color="inherit" size={20} />
+                            ) : null}
+                            {params.InputProps.endAdornment}
+                          </React.Fragment>
+                        )
+                      }}
                     />
                   )}
                 />
