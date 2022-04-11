@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
 import { makeStyles, Typography } from "@material-ui/core";
-import Demo from "./Demo";
+import ProductForm from "./ProductForm";
 
 const useStyles = makeStyles({
   container: {
@@ -37,7 +37,7 @@ const App = () => {
         <Typography variant="h6" className={classes.title}>
           Formik with Material UI Autocomplete
         </Typography>
-        <Demo />
+        <ProductForm />
       </div>
       <div className={classes.footer}>
         <Typography>
